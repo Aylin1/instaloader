@@ -514,10 +514,8 @@ class Profile:
 
     def _obtain_metadata(self):
         try:
-            if self._rhx_gis == None:
-                metadata = self._context.get_json('{}/'.format(self.username), params={})
-                self._node = metadata['entry_data']['ProfilePage'][0]['graphql']['user']
-                self._rhx_gis = metadata['rhx_gis']
+            metadata = self._context.get_json('{}/'.format(self.username), params={})
+            self._node = metadata['entry_data']['ProfilePage'][0]['graphql']['user']
         except (QueryReturnedNotFoundException, KeyError) as err:
             raise ProfileNotExistsException('Profile {} does not exist.'.format(self.username)) from err
 
