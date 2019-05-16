@@ -68,7 +68,7 @@ class Post:
         self._node = node
         self._owner_profile = owner_profile
         self._full_metadata_dict = None  # type: Optional[Dict[str, Any]]
-        self._rhx_gis_str = None         # type: Optional[str]
+        self._rhx_gis_str = ""         # type: Optional[str]
         self._location = None            # type: Optional[PostLocation]
 
     @classmethod
@@ -454,7 +454,7 @@ class Profile:
         self._context = context
         self._has_public_story = None  # type: Optional[bool]
         self._node = node
-        self._rhx_gis = None
+        self._rhx_gis = ''
         self._iphone_struct_ = None
         if 'iphone_struct' in node:
             # if loaded from JSON with load_structure_from_file()
@@ -514,7 +514,7 @@ class Profile:
 
     def _obtain_metadata(self):
         try:
-            if not self._rhx_gis:
+            if self._rhx_gis == None:
                 metadata = self._context.get_json('{}/'.format(self.username), params={})
                 self._node = metadata['entry_data']['ProfilePage'][0]['graphql']['user']
                 self._rhx_gis = metadata['rhx_gis']
