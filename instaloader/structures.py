@@ -132,7 +132,6 @@ class Post:
         if not self._full_metadata_dict:
             pic_json = self._context.get_json("p/{0}/".format(self.shortcode), params={})
             self._full_metadata_dict = pic_json['entry_data']['PostPage'][0]['graphql']['shortcode_media']
-            self._rhx_gis_str = pic_json['rhx_gis']
             if self.shortcode != self._full_metadata_dict['shortcode']:
                 self._node.update(self._full_metadata_dict)
                 raise PostChangedException

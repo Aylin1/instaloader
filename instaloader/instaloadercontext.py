@@ -525,11 +525,4 @@ class InstaloaderContext:
 
     @property
     def root_rhx_gis(self) -> Optional[str]:
-        """rhx_gis string returned in the / query."""
-        if self.is_logged_in:
-            # At the moment, rhx_gis seems to be required for anonymous requests only. By returning None when logged
-            # in, we can save the root_rhx_gis lookup query.
-            return None
-        if not self._root_rhx_gis:
-            self._root_rhx_gis = self.get_json('', {})['rhx_gis']
-        return self._root_rhx_gis
+        return ""
